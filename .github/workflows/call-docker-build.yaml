@@ -48,4 +48,4 @@ jobs:
         tostanoski/vvh-dev
         ghcr.io/tostanoski/vvh-dev
       platforms: linux/amd64,linux/arm64
-      target: jekyll-serve
+      target: vvh-dev
