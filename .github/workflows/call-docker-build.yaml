@@ -1,0 +1,51 @@
+---
+name: Docker Build
+
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'Dockerfile'
+      - '.github/workflows/call-docker-build.yaml'
+      - 'docker-entrypoint.sh'
+  pull_request:
+    paths:
+      - 'Dockerfile'
+      - '.github/workflows/call-docker-build.yaml'
+      - 'docker-entrypoint.sh'
+
+  schedule:
+    # re-run montly to keep image fresh with upstream base images
+    - cron: '0 12 15 * *'
+
+jobs:
+
+  build-jekyll-serve-image:
+
+    # use Reusable Workflows
+    # https://docs.github.com/en/actions/learn-github-actions/reusing-workflows
+    name: Call Docker Build Jekyll-Serve
+
+    uses: bretfisher/docker-build-workflow/.github/workflows/reusable-docker-build.yaml@main
+
+#    if: github.event_name == 'push'
+
+    permissions:
+      contents: read
+      packages: write # needed to push docker image to ghcr.io
+      pull-requests: write # needed to create and update comments in PRs
+    
+    secrets:
+
+      dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
+      dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    with:
+      dockerhub-enable: true
+      ghcr-enable: true
+      image-names: |
+        tostanoski/vvh-dev
+        ghcr.io/tostanoski/vvh-dev
+      platforms: linux/amd64,linux/arm64
+      target: jekyll-serve
