@@ -9,6 +9,7 @@ RUN gem update --system && gem install bundler && gem install sass-embedded -v 1
 
 EXPOSE 4000
 
+
 WORKDIR /src
 
 CMD [ "bundle", "exec", "jekyll", "serve", "--force_polling", "--incremental", "-H", "0.0.0.0", "-P", "4000" ]
