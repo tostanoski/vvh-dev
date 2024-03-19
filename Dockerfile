@@ -1,4 +1,4 @@
-FROM ruby as vvh-dev
+FROM ruby:3.2 as vvh-dev
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
