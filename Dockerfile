@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-RUN gem update --system && gem install bundler && gem install rouge -v 4.2.0 && gem install jekyll && gem install jekyll-last-modified-at
+RUN gem update --system && gem install bundler && gem install jekyll -v 4.3.2 && gem install jekyll-last-modified-at
 
 EXPOSE 4000
 
