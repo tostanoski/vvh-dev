@@ -1,11 +1,11 @@
-FROM ruby:3.4-slim as vvh-dev
+FROM ruby:3.4 as vvh-dev
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-RUN gem update --system && gem install bundler && gem install jekyll && gem install jekyll-last-modified-at && gem install jekyll-spaceship
+RUN gem update --system && gem install bundler && gem install sass-embedded -v 1.78.0 && gem install jekyll-last-modified-at && gem install jekyll && gem install jekyll-spaceship
 
 
 EXPOSE 4000
