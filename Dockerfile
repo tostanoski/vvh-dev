@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-RUN gem update --system && gem install bundler && gem install jekyll && gem install jekyll-last-modified-at
+RUN gem update --system && gem install bundler && gem install jekyll && gem install jekyll-last-modified-at && gem install jekyll-spaceship
 
 EXPOSE 4000
 
