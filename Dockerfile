@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-RUN gem update --system && gem install bundler && gem install logger && gem install jekyll-include-cache && gem install jekyll-last-modified-at && gem install jekyll
+RUN gem update --system && gem install bundler && gem install logger && gem install sass-embedded:1.77.5 && gem install jekyll-include-cache && gem install jekyll-last-modified-at && gem install jekyll
 
 
 EXPOSE 4000
